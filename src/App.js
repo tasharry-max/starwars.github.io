@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Navbar from './components/Navbar';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import {Container} from 'semantic-ui-react';
-import Planet from './components/Planet';
+import Planet from './components/Planets';
 import People from './components/People';
 import './App.css';
 
