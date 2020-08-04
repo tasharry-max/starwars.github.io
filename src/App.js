@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import Navbar from './components/Navbar';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import {Container} from 'semantic-ui-react';
+import {Container, Dimmer, Loader} from 'semantic-ui-react';
+import Home from './components/Home';
 import Planet from './components/Planets';
 import People from './components/People';
 import './App.css';
@@ -16,32 +17,41 @@ function App() {
       let res = await fetch("https://swapi.dev/api/people/?format=json");
       let data = await res.json();
       setPeople(data.results);
+      setLoading(false);
     }
 
     async function fetchPlanets() {
       let res = await fetch("https://swapi.dev/api/planets/?format=json");
       let data = await res.json();
       setPlanets(data.results);
+      setLoading(false);
     }
 
     fetchPeople();
-
+    fetchPlanets();
   }, [])
-  console.log(people)
   return (
     <div className="App">
       <Router>
       <Navbar/>
       <Container>
-        <Switch>
-          <Route exact path="/"></Route>
+        {loading ? (
+          <Dimmer active inverted>
+            <Loader inverted>Loading</Loader>
+          </Dimmer>
+        ) : 
+        (<Switch>
+          <Route exact path="/">
+            <Home/>
+          </Route>
           <Route exact path="/people">
-            <People/>
+            <People data={people}/>
           </Route>
           <Route exact path="/planet">
             <Planet/>
           </Route>
         </Switch>
+        )}
       </Container>
       </Router>
     </div>
