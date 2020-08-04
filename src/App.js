@@ -47,8 +47,8 @@ function App() {
           <Route exact path="/people">
             <People data={people}/>
           </Route>
-          <Route exact path="/planet">
-            <Planet/>
+          <Route exact path="/planets">
+            <Planet data={planets}/>
           </Route>
         </Switch>
         )}

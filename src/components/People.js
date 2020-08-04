@@ -12,6 +12,7 @@ const People = ({data}) => {
       }, [searchTerm]);
     return (
         <div>
+            Search by name: 
             <Search onChange={(value) => setSearchTerm(value)} />
             <Grid columns={3}>
                 {searchResults.map((people, i) => {
@@ -21,7 +22,8 @@ const People = ({data}) => {
                                 <Card.Content>
                                     <Card.Header>{people.name}</Card.Header>
                                     <Card.Description>
-                                        <p>{people.height}</p>
+                                        <p>Height {people.height}</p>
+                                        <p>Gender {people.gender}</p>
                                     </Card.Description>
                                 </Card.Content>
                             </Card>
