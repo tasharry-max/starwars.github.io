@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Navbar from './components/Navbar';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import {HashRouter, Switch, Route} from 'react-router-dom';
 import {Container, Dimmer, Loader} from 'semantic-ui-react';
 import Home from './components/Home';
 import Planet from './components/Planets';
@@ -32,7 +32,7 @@ function App() {
   }, [])
   return (
     <div className="App">
-      <Router>
+      <HashRouter basename="/">
       <Navbar/>
       <Container>
         {loading ? (
@@ -44,16 +44,16 @@ function App() {
           <Route exact path="/">
             <Home/>
           </Route>
-          <Route exact path="/people">
+          <Route path="/people">
             <People data={people}/>
           </Route>
-          <Route exact path="/planets">
+          <Route path="/planets">
             <Planet data={planets}/>
           </Route>
         </Switch>
         )}
       </Container>
-      </Router>
+      </HashRouter>
     </div>
   );
 }
